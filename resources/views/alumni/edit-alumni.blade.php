@@ -1,0 +1,94 @@
+@extends('layout.dashboard-app')
+
+@section('dashboard')
+@if (auth()->user()->hasRole('admin'))
+<div class="container-fluid px-4">
+    <div class="mt-3">
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
+<h1 class="mt-4">Edit Alumni</h1>
+    <div class="card-mb-4">
+        <div class="card-body">
+            <form action="/admin/alumni/edit/{{ $alumni->id }}" method="post">
+                @csrf
+                @method('POST')
+                <div class="form-group">
+                    <label for="tempat_kerja">Tempat kerja</label>
+                    <input type="text" class="form-control" id="tempat_kerja" name="tempat_kerja" value="{{ $alumni->tempat_kerja }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="mulai_kerja">Mulai kerja</label>
+                    <input type="text" class="form-control" id="mulai_kerja" name="mulai_kerja" value="{{ $alumni->mulai_kerja }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="akhir_kerja">Akhir kerja</label>
+                    <input type="text" class="form-control" id="akhir_kerja" name="akhir_kerja" value="{{ $alumni->akhir_kerja }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="penghasilan">Penghasilan</label>
+                    <input type="text" class="form-control" id="penghasilan" name="penghasilan" value="{{ $alumni->penghasilan }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="jenis_pekerjaan">Jenis pekerjaan</label>
+                    <input type="text" class="form-control" id="jenis_pekerjaan" name="jenis_pekerjaan" value="{{ $alumni->jenis_pekerjaan }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="jabatan">Jabatan</label>
+                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $alumni->jabatan }}" required>
+                </div>
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="/admin/alumni" class="btn btn-secondary">Kembali</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
+
+@if (auth()->user()->hasRole('alumni'))
+<div class="container-fluid px-4">
+<h1 class="mt-4">Edit Alumni</h1>
+    <div class="card-mb-4">
+        <div class="card-body">
+            <form action="/alumni/edit/{{ $alumni->id }}" method="post">
+                @csrf
+                @method('POST')
+                <div class="form-group">
+                    <label for="tempat_kerja">Tempat kerja</label>
+                    <input type="text" class="form-control" id="tempat_kerja" name="tempat_kerja" value="{{ $alumni->tempat_kerja }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="mulai_kerja">Mulai kerja</label>
+                    <input type="text" class="form-control" id="mulai_kerja" name="mulai_kerja" value="{{ $alumni->mulai_kerja }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="akhir_kerja">Akhir kerja</label>
+                    <input type="text" class="form-control" id="akhir_kerja" name="akhir_kerja" value="{{ $alumni->akhir_kerja }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="penghasilan">Penghasilan</label>
+                    <input type="text" class="form-control" id="penghasilan" name="penghasilan" value="{{ $alumni->penghasilan }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="jenis_pekerjaan">Jenis pekerjaan</label>
+                    <input type="text" class="form-control" id="jenis_pekerjaan" name="jenis_pekerjaan" value="{{ $alumni->jenis_pekerjaan }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="jabatan">Jabatan</label>
+                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $alumni->jabatan }}" required>
+                </div>
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="/alumni" class="btn btn-secondary">Kembali</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
+@endsection
